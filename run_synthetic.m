@@ -2,14 +2,6 @@ clear all
 close all
 clc
 
-% Assign effective reproduction number
-load data/synthetic_rt.mat
-R = R(1:3,:);
-R(1,:) = (1.25-0.35*sin(4*pi*(tf(2,:))/T));
-R(2,:) = .8*(1-0.4*sin(4*pi*(tf(1,:)-20)/T));
-R(3,:) = 1.05*R(3,:);
-R(2,1:20) = .8;
-
 % Generate mobility
 ResPop = [80000; 450000; 700000];
 C = [0.91 0.05 0.04; 0.05 0.83 0.12; 0.1 0.05 0.85]; C = C';
@@ -25,7 +17,13 @@ T = t(end)+1;
 psi = (1-0.8*sin(4*pi*tf/T));   % seasonal perturbation
 csi = x.*psi;                   % new csi
 
-
+% Assign effective reproduction number
+load data/synthetic_rt.mat
+R = R(1:3,:);
+R(1,:) = (1.25-0.35*sin(4*pi*(tf(2,:))/T));
+R(2,:) = .8*(1-0.4*sin(4*pi*(tf(1,:)-20)/T));
+R(3,:) = 1.05*R(3,:);
+R(2,1:20) = .8;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -41,7 +39,7 @@ par.cv_r_0=0.5;
 par.low_cv_r=0.2;
 
 par.alpha_min = 0;
-par.tau = 0.95;
+par.delta = 0.95;
 
 par.lik = 'V1';
 
@@ -50,6 +48,7 @@ par.lik = 'V1';
 
 % Generate cases
 sigmas = [0.05; 0.08; 0.03]; % perturbation with log-normal noise
+%sigmas = [0.00; 0.00; 0.00]; % perturbation with log-normal noise
 F = zeros(N,365);
 F(1,1:6) = 25;
 F(2,1:6) = 15;

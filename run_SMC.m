@@ -92,7 +92,7 @@ switch purpose
         end
         save('results/stability.mat')
         % Make figure
-        figure('Renderer','painters','Units','centimeters','Position',[0 0 12 7])
+        figure('Renderer','painters','Units','centimeters','Position',[0 0 16 7])
         semilogx(Np_Vect,Var_Vect,'--.k','MarkerSize',15)
         xlabel('Number of particles')
         ylabel('Variance')

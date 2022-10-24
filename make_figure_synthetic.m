@@ -6,7 +6,7 @@ colors2 = ["#2274a5"; "#f75c03"; "#f1c40f"];
 
 
 tt=1:size(R_out.Q50,2); a = find(R_out.Q95(1,:),1,'first');
-figure('Renderer', 'painters', 'Units', 'centimeters', 'Position', [1 1 18 22])
+figure('Renderer', 'painters', 'Units', 'centimeters', 'Position', [1 1 12 18])
 for nn = 1:3
     subplot(4*2,2*2,[(1+8*(nn-1)):(2+8*(nn-1)) (5+8*(nn-1)):(6+8*(nn-1))])
     filler(tt(a:end),R_out.Q95(nn,a:end),R_out.Q05(nn,a:end),colors2(2),0.2);
@@ -34,7 +34,7 @@ for nn = 1:3
         set(gca,'XTickLabel',[])
     end
     if nn == 1
-        title('$\mathcal{R}_t$','interpreter','latex')
+        title('$\mathcal{R}$','interpreter','latex')
     elseif nn == 3
         xlabel('Time')
     end
@@ -82,6 +82,6 @@ end
     set(gca, 'Color', 'None')
 set(gcf, 'PaperUnits', 'centimeters');
 set(gcf, 'PaperSize', [18 18]);
-set(findall(gcf,'-property','FontSize'),'FontSize',10)
+set(findall(gcf,'-property','FontSize'),'FontSize',9)
     
 end
